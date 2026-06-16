@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-paper: #F9F9F7;
+  --color-ink: #111111;
+  --color-red: #CC0000;
+  --color-red-light: #FFF5F5;
+  --color-gray-100: #F0F0EC;
+  --color-gray-200: #E0E0D8;
+  --color-gray-300: #C8C8BF;
+  --color-gray-400: #A0A098;
+  --color-gray-500: #707068;
+  --color-gray-600: #505048;
+  --color-gray-700: #303028;
+  --color-gray-800: #20201C;
+  --color-gray-900: #181814;
+  --color-black: #111111;
+  --color-white: #F9F9F7;
+}
+
+@layer base {
+  *, *::before, *::after {
+    border-radius: 0 !important;
+  }
+}
+
+@utility paper-texture {
+  background-color: var(--color-paper);
+  background-image: radial-gradient(circle, rgba(17,17,17,0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+@utility grid-texture {
+  background-image:
+    linear-gradient(rgba(17,17,17,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17,17,17,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@utility halftone {
+  background-image: radial-gradient(circle, var(--color-ink) 2px, transparent 2px);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
+  opacity: 0.08;
+}
+
+@utility hard-shadow {
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+}
+
+@utility hard-shadow-sm {
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+}
+
+@utility divider-ornament {
+  &::before {
+    content: "✦ ✦ ✦";
+    display: block;
+    text-align: center;
+    font-size: 0.625rem;
+    letter-spacing: 0.5em;
+    color: var(--color-gray-300);
+    margin: 1.5rem 0;
+  }
+}
+
+@utility column-rule {
+  border-left: 1px solid var(--color-ink);
+}
+
+@utility dropcap {
+  &::first-letter {
+    float: left;
+    font-family: "Playfair Display", Georgia, "Noto Serif SC", serif;
+    font-size: 4em;
+    line-height: 0.8;
+    margin-right: 0.5rem;
+    margin-top: 0.15rem;
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+}
+
+@utility ticker-anim {
+  animation: ticker-scroll 24s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: "Lora", Georgia, "Noto Serif SC", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-gray-100); }
+::-webkit-scrollbar-thumb { background: var(--color-gray-300); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gray-400); }
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* Image grayscale default, sepia on hover */
+img.grayscale-img {
+  filter: grayscale(1);
+  transition: filter 200ms ease;
+}
+img.grayscale-img:hover {
+  filter: grayscale(0) sepia(0.3);
+}
